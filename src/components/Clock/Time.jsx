@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Clock from './Clock';
 
 export default function Time() {
@@ -26,12 +26,14 @@ export default function Time() {
         return () => clearInterval(interval)
     }, [])
     return(
-        <Row>
-            {
-                time.map((element, i) => {
-                    return <Clock key={i} time={element}/>
-                })
-            }
-        </Row>
+        <Container>
+            <Row className='d-flex justify-content-center'>
+                {
+                    time.map((element, i) => {
+                        return <Clock key={i} time={element}/>
+                    })
+                }
+            </Row>
+        </Container>
     );
 }

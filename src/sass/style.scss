@@ -1,0 +1,12 @@
+.clock {
+    text-align: center;
+    font-size: xx-large;
+    .clock-zone {
+        font-weight: bolder;
+    }
+    .clock-time {
+        background-color: rgb(66, 65, 65);
+        color: white;
+        border: 5px solid black;
+    }
+}
