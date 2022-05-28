@@ -26,7 +26,7 @@ export default function Time() {
         return () => clearInterval(interval)
     }, [])
     return(
-        <Container>
+        <Container fluid>
             <Row className='d-flex justify-content-center'>
                 {
                     time.map((element, i) => {

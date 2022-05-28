@@ -1,6 +1,11 @@
+@function get-vw($target) { 
+    $vw-context: (1000*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
+$window-width: get-vw(32px);
 .clock {
     text-align: center;
-    font-size: xx-large;
+    font-size: $window-width;
     .clock-zone {
         font-weight: bolder;
     }
@@ -8,5 +13,6 @@
         background-color: rgb(66, 65, 65);
         color: white;
         border: 5px solid black;
+        display: inline;
     }
 }
