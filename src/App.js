@@ -20,12 +20,17 @@ function App() {
   const backgroundStyle = {
     background: `linear-gradient(180deg, rgba(2,0,36,1) ${black}%, rgba(138,152,1,0.50) ${yellow}%, rgba(0,177,157,0.82) ${blue}%)`
   }
+
   useEffect(() => {
     setZone(pst)
+    initialPercent()
+  }, [zone])
+
+
+  useEffect(() => {
     let timing;
     if(zone !== ""){
       const timeArr = zone.split(/[\s:]/);
-      // console.log(timeArr)
       let time = `${timeArr[1]}.`
       for(let i = 2; i < timeArr.length; i++) {
         if(parseInt(timeArr[i]) < 10) {
@@ -41,6 +46,43 @@ function App() {
     }
     return () => clearInterval(timing)
   }, [zone, blue, yellow, black, switching])
+
+  const initialPercent = () => {
+    if(zone !== "") {
+      const timeArr = zone.split(/[\s:]/);
+      let time = `${timeArr[1]}.`
+      for(let i = 2; i < timeArr.length; i++) {
+        if(parseInt(timeArr[i]) < 10) {
+          time += `0${timeArr[i]}`
+        } else {
+          time += timeArr[i]
+        }
+      }
+      time = parseFloat(time)
+      console.log(time)
+      if(time > 6 && time <= 10){
+        time -= 6
+        setBlue(((time*60)/240)*100)
+      } else if (time > 10 && time <= 14) {
+        time -= 10
+        setBlue(((time*60)/240)*100)
+        setYellow(((time*60)/240)*100)
+      } else if (time > 14 && time <=18 ) {
+        time -= 14
+        setBlue(100)
+        setBlack(((time*60)/240)*100)
+        setYellow(((time*60)/240)*100)
+      } else if (time > 18 && time <= 22) {
+        setBlack(((time*60)/240)*100)
+        setBlue(100)
+        setYellow(100)
+      } else if (time > 22) {
+        setBlack(100)
+        setBlue(100)
+        setYellow(100)
+      }
+    }
+  }
 
   const backgroundPercent = (time) => {
     if(switching){
